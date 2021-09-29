@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="../../static/popcom/css/styles.css">
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+<h1 style="color:black; font-size: 3em; font-weight: bold;">Inscription</h1>
+<br><br>
+
+
+<div class="form-group">
+<form method="POST">
+<!-- Permet d'éviter les attaques par authentification dissimulée dans un form -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+
+</div>
+<br>
+<button class="btn btn-secondary">Register</button>
+<br><br><br>
+</div>
+
+{% endblock %}

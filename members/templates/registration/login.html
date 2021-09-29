@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+<h1 style="color:black; font-size: 3em; font-weight: bold;">Connexion</h1>
+<br><br>
+
+
+<div class="form-group">
+<form method="POST">
+<!-- Permet d'éviter les attaques par authentification dissimulée dans un form -->
+    {% csrf_token %}
+    <form>
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Nom d'Utilisateur" >
+        </div>
+        <br>
+        <div class="form-group">
+         <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+
+        </div>
+       
+    
+
+</div>
+<br>
+<button class="btn btn-secondary">Connexion</button>
+<br>
+<br>
+Pas encore membre ? Inscrivez vous <a href="{% url 'register' %}">Ici...</a>
+</div>
+{% endblock %}

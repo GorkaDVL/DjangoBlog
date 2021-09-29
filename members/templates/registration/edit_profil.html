@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+    <h1 style="color:black; font-size: 3em; font-weight: bold;">Paramètres</h1>
+
+
+<br><br>
+
+<div class="form-group">
+<form method="POST">
+<!-- Permet d'éviter les attaques par authentification dissimulée dans un form -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+
+</div>
+<button class="btn btn-secondary">Modifier Paramètre</button>
+</div>
+{% endblock %}

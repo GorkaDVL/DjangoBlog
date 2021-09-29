@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Blog Categories {% endblock %}
+{% block content %}
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+<h1 style="color:black; font-size: 3em; font-weight: bold;">Catégories</h1>
+
+<ul>
+    {% for item in cat_menu_list %}
+    
+      <li><a class="dropdown-item" href="{% url 'category' item|slugify %}" style="font-size: 2em;">
+        {{ item }} </a></li>  
+    {% endfor %} 
+  </ul>    
+  <br><br> 
+  </div>
+{% endblock %}

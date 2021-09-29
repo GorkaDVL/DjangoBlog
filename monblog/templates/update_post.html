@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Blog Post {% endblock %}
+{% block content %}
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<h1 style="color:black; font-size: 3em; font-weight: bold;">Modifier Article</h1>
+<br><br>
+
+
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+<!-- Permet d'éviter les attaques par authentification dissimulée dans un form -->
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    
+
+</div>
+<button class="btn btn-secondary">Modifier</button>
+{% else %}
+<h1>You shall Not Pass !</h1>
+{% endif %}
+{% else %}
+<h1>You shall Not Pass !</h1>
+{% endif %}
+</div>
+{% endblock %}

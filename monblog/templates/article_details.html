@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title_tag }} {% endblock %}
+{% block content %}
+
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;font-family: 'Fira Sans', sans-serif; ">
+<h1 style="color:black; font-size: 3em; font-weight: bold;">{{ post.title }} </h1>
+
+<p><small> {{ post.author.first_name }} {{ post.author.name_name }} - {{ post.post_date }} <br> {{ post.category }} </a></p>
+  {% if user.is_authenticated %} 
+    {% if user.id == post.author.id %}
+   (<a href="{% url 'update_post' post.pk %}">Edit</a>)</small><small>
+     (<a href="{% url 'delete_post' post.pk %}">Delete</a>)</small>
+     {% endif %}
+     {% endif %}<br>
+   
+<hr>
+<br>
+
+{% if post.header_image %}
+<img class="img-fluid rounded mx-auto d-block" width="35%" src="{{ post.header_image.url }}">
+{% endif %}
+<br><br><br>
+{{ post.body|safe }}
+<br>
+{% if user.is_authenticated %} 
+
+<form action="{% url 'like_post' post.pk%}" method="POST">
+{% csrf_token %}
+{% if liked  %}
+
+<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">	🤍</button> 
+
+{% else %}
+<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">	🤍
+</button> 
+
+{% endif %}
+{% else %}
+  <small><a href="{% url 'login' %}">Connectez-vous</a> pour liker</small>
+  🤍
+  {% endif %}
+{{ total_likes }} 
+</form>
+<hr>
+<br>
+<!--<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>-->
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <div class="fb-share-button" 
+data-href="https:{{ request.build_absolute_uri }}" 
+data-layout="button_count">
+</div>
+
+<div>
+<a href="{{ request.build_absolute_uri }}" class="twitter-share-button" data-show-count="false">Tweet</a>
+</div>
+</div>
+<br><br>
+
+
+<br><br><br><br>
+
+<div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-2">
+      {% if post.author.profile.profile_pic %}
+      <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid" >
+      {% else %}
+      <img src="{% static 'popcom/images/default_profile_pic.png' %}" class="img-thumbnail img-fluid">
+      {% endif %}
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.author.first_name }} {{ post.author.name_name }}</h5>
+        <p class="small text-muted">
+          <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a> 
+          {% if post.author.profile.website_url %}
+          | <a href="{{ post.author.profile.website_url }}">Website</a> 
+          {% endif %}
+          {% if post.author.profile.facebook_url %}
+          | <a href="{{ post.author.profile.facebook_urll }}">Facebook</a> 
+          {% endif %}
+          {% if post.author.profile.twitter_url %}
+          | <a href="{{ post.author.profile.twitter_url }}">Twitter</a> 
+          {% endif %}
+          {% if post.author.profile.instagram_url %}
+          | <a href="{{ post.author.profile.instagram_url }}">Instagram </a> 
+          {% endif %}
+         
+        <p class="card-text">{{ post.author.profile.bio }}</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<hr>
+<br>
+<h2>Comments ({{ object.number_of_comments }})</h2> 
+
+  <br>
+<br>
+
+{% if not post.comments.all %}
+ Aucun commentaire ... 
+
+ 
+  
+  
+
+
+{% else %}
+
+
+
+<br><br>
+
+
+
+
+  {% for comment in post.comments.all %}
+  
+  <strong>
+    {{ comment.name }} - 
+    {{ comment.date_added }}
+  </strong>
+  <br>
+
+  {{ comment.body }}
+<br><br>
+  {% endfor %}
+<hr>
+<br><br>
+{% endif %}
+
+{% if user.is_authenticated %} 
+<br>
+<form method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    {{ comment_form }}
+    <br>
+    <button class="btn btn-success" type="submit">Ajouter commentaire <i class="fas fa-comments"></i></button>
+  </div>
+</form>
+{% endif %}
+
+
+
+
+<br><br>
+
+</div>
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="KxJOnqPK"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+{% endblock %}

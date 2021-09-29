@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+
+  <h1 style="color:black; font-size: 3em; font-weight: bold;">Mon Profil</h1>
+
+<br><br>
+<div class="card mb-3" >
+    <div class="row g-0">
+      <div class="col-md-2">
+
+    {% if page_user.profile_pic %}
+   
+    <img src="{{ page_user.profile_pic.url }}" alt="" width="180" height="180">
+    {% else %}
+    <img src="{% static 'popcom/images/default_profile_pic.png' %}" alt="" width="180" height="180">
+    {% endif %}
+  </div>
+  <div class="col-md-10">
+    <div class="card-body">
+      <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.name_name }}</h5>
+      <p class="small text-muted">
+
+        {% if page_user.website_url %}
+        | <a href="{{ page_user.website_url }}">Website</a> 
+        {% endif %}
+        {% if page_user.facebook_url %}
+        | <a href="{{ page_user.facebook_urll }}">Facebook</a> 
+        {% endif %}
+        {% if page_user.twitter_url %}
+        | <a href="{{ page_user.twitter_url }}">Twitter</a> 
+        {% endif %}
+        {% if page_user.instagram_url %}
+        | <a href="{{ page_user.instagram_url }}">Instagram</a> 
+        {% endif %}
+       
+      <p class="card-text">{{ page_user.bio }}</p>
+      
+    </div>
+  </div>
+</div>
+</div>
+<br><br><br>
+</div>
+
+{% endblock %}

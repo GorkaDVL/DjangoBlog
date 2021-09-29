@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Blog Post {% endblock %}
+{% block content %}
+<div class="container bg-light" style="border: rgb(211, 211, 211) solid 24px;">
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<h1 style="color:black; font-size: 3em; font-weight: bold;">Supprimer Article</h1>
+<br><br>
+<h3>Supprimer : {{ post.title }}</h3>
+<br>
+<div class="form-group">
+<form method="POST">
+<!-- Permet d'éviter les attaques par authentification dissimulée dans un form -->
+    {% csrf_token %}
+    <strong>Etes vous sûr ?</strong><br><br>
+    
+
+</div>
+<button class="btn btn-secondary">Supprimmer !</button>
+{% else %}
+<h1>You shall Not Pass !</h1>
+{% endif %}
+{% else %}
+<h1>You shall Not Pass !</h1>
+{% endif %}
+</div>
+{% endblock %}

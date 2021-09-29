@@ -1,0 +1,107 @@
+
+body {
+    background-color: #111;
+    
+}
+.container{
+    padding-top: 3em;
+    
+}
+
+#logo{
+  position: relative;
+  left: 530px;
+}
+h1{
+    text-align: center;
+    padding: 1em;
+    color: white;
+    font-size: 5em;
+    
+    
+}
+
+nav{
+  border-bottom: solid grey 1px;
+  
+}
+.img__img{
+    width: 100%;
+    height: 25vw;
+    object-fit: cover
+}
+.img__wrap {
+    position: relative;
+    width: 100%;
+    height: 25vw;
+   
+  }
+  
+  
+  .img__description_layer {
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  
+    
+  
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+  }
+
+  .post_date{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-style: italic;
+    font-size: 2.5vh;
+  }
+  .post_title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5vh;
+   
+  }
+  
+  
+  .img__wrap:hover .img__description_layer {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .img__description {
+    transition: .2s;
+    transform: translateY(1em);
+  }
+  
+  .img__wrap:hover .img__description {
+    transform: translateY(0);
+  }
+
+  footer{
+    padding: 2em;
+    color: rgba(143, 143, 143, 0.959);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 200px) and (max-width: 640px) {
+    #popcomlogo {
+      display:none;
+     
+    }
+  }
