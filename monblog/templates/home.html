@@ -5,22 +5,7 @@
 
 <div class="container-fluid ">
   <div class="container">
-<!--
-<ul>
-{% for post in object_list %}
-   <li><a href="{% url 'article-detail' post.pk %}"> {{post.title}}</a> 
-   <a href="{% url 'category' post.category|slugify %}">- {{ post.category }} </a> - {{post.author.first_name}} {{post.author.last_name}} - {{ post.post_date }}  
 
-    {% if user.is_authenticated %} 
-    {% if user.id == post.author.id %}
-    - <small>(<a href="{% url 'update_post' post.pk %}">Edit</a>)</small>
-    <small>(<a href="{% url 'delete_post' post.pk %}">Delete</a>)</small> 
-    {% endif %}
-    {% endif %}<br/>
-    {{ post.snippet }}</li>
-{% endfor %}
-</ul>
--->
 
 
 <div class="row">
@@ -34,7 +19,7 @@
                         
                           <div class="img__wrap">
                             <a href="{% url 'article-detail' post.pk %}">
-                            <img class="img__img img-fluid " src="{{ post.header_image.url }}" />
+                            <img class="img__img img-fluid " src="https://via.placeholder.com/150x150.png" />
                             <div class="img__description_layer">
                               
                               <p class="img__description"><span class="post_title">{{ post.title }}</span>
@@ -49,20 +34,7 @@
                           </a>
                           </div>
                         
-                          <!--
-                    <div class="card-deck">
-                      <div class="card">
-                          <img class="card-img-top img-fluid" src="{{ post.header_image.url }}" alt="Card image cap">
-                        <div class="card-body">
-                              <h4 class="card-title">{{ post.title }}</h4>
-                              <p class="card-text">{{ post.snippet }}</p>
-                              <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
-                          </div>
-                           
-                      </div>
-                     
-                  </div>
-                -->
+                         
               </div>
 
 
